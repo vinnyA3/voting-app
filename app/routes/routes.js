@@ -8,12 +8,12 @@ module.exports = function(app,passport){
             } 
              //generate a json response reflecting authentication status
              if(!user){
-                 return res.send({success : false, message: 'authentication has failed!'});
+                 return res.send({success : false, message: 'Authentication Has Failed!'});
              }
              //explicitly run passport's login function
              req.login(user, function(err){
                 if(err){return next(err);}
-                return res.send({success:true,message:'authentication has succeeded!'});
+                return res.send({success:true,message:'Sign Up Successful!'});
              });
     
          })(req,res,next);
@@ -26,14 +26,14 @@ module.exports = function(app,passport){
                return next(err);
            }
            if(!user){
-               return res.send({success:false, message:'failed to login!'});
+               return res.send({success:false, message:'Login Unsuccessful!'});
            }else{
                //explicitly call passport's login function
                req.login(user, function(err){
                    if(err){
                       return next(err);
                     }
-                      return res.send({ success : true, message : 'authentication succeeded' }); 
+                      return res.send({ success : true, message : 'Authentication Successful!' }); 
                });
            }
            
@@ -45,7 +45,6 @@ module.exports = function(app,passport){
     //================================================
     
     app.get('/dashboard', isLoggedIn, function(req,res){
-        console.log('we hit the route!');
         return res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
     });
     
@@ -55,7 +54,7 @@ module.exports = function(app,passport){
     //================================================
     app.get('/logout', function(req,res){
        req.logout();//passports logout function
-       res.send({success:true, message:'Logged out successfully!'});
+       res.send({success:true, message:'Logged Out Successfully!'});
     });
     
 };
