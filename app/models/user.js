@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 var userSchema = mongoose.Schema({
     local:{
         email: String,
-        password: String
+        password: String,
+        name: String
     },
     twitter:{
         id: String,
