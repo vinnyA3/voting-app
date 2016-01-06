@@ -21,7 +21,7 @@ require('./config/passport')(passport); //pass passport for configuration
 
 //morgan - allow us to view allrequests in the console
 app.use(morgan('dev'));
-app.use(cookieParser());// read cookies - need for auth
+app.use(cookieParser('theregoesamanwhooncehaditall'));// read cookies - need for auth
 //body parser - allow use to handle posts
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
