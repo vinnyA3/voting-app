@@ -21,9 +21,8 @@ module.exports = function(passport){
     
     //deserialize the user from the session
     passport.deserializeUser(function(id,done){
-        //deserialize bu user id
+        console.log('user id is: ' + id);
         User.findById(id, function(err,user){
-            console.log("serialized user: " + user)
            done(err,user); 
         });
     });
@@ -62,6 +61,8 @@ module.exports = function(passport){
                         //set the user's local credentials
                         newUser.local.email = email;
                         newUser.local.password = newUser.generateHash(password);
+                        newUser.local.name = req.body.name;
+
                         
                         //save the user in the database
                         newUser.save(function(err){
