@@ -36,8 +36,9 @@ module.exports = function(app,passport){
                req.login(user, function(err){
                    if(err){
                       return next(err);
-                    }
-                      return res.send({ success : true, message : 'Authentication Successful!' }); 
+                   } 
+                      //one success, redirect to the dashboard
+                      res.redirect('/dashboard');
                });
            }
            
@@ -49,32 +50,37 @@ module.exports = function(app,passport){
     //================================================
     
     app.get('/dashboard', isLoggedIn, function(req,res){
-        //query db for user 
-        User.findById(req.user.local.id, function(err,user){
-           if(err){ return err;}
-            
-           //just console the result for now....
-            console.log(req.user);
-            return res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
-        });
-        
+         res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
     });
     
+    //add a new poll
     app.post('/dashboard', isLoggedIn, function(req,res){
-        var poll = {name: req.body.name, options: req.body.option, creator: req.user.local.id};
+       // var poll = {name: req.body.name, options: req.body.option, creator: req.user.local.id};
+        
         //create new poll object
         var newPoll = new Poll();
-        newPoll.polls = poll;
         
-        //find the user with the request id and populate polls reference in User (UserSchema)
-        User.findById(req.user.local.id)
-             .populate('polls')
-             .exec(function(err,user){
-                 if(err){return err;}
-                console.log(user);
-                  console.log(req.user);
-                 res.send({success:true, message: "Post Successful!"});
-        });        
+        newPoll.creator = req.user.local.email;
+        newPoll.name = req.body.name;
+        newPoll.options = req.body.option;
+        
+        //save new poll
+        newPoll.save(function(err){
+            if(err){ return err;}
+            //thats it
+        });  
+        
+        res.send({success:true, message:'Poll created!', poll:newPoll});
+    });
+    
+    //route to dislpay all users polls
+    app.get('/polls', isLoggedIn, function(req,res){
+       //go through database and find the polls the match the req.email
+        Poll.find({'creator': req.user.local.email}, function(err,polls){
+            if(err){ return res.send(err);}
+            //return the found polls
+            return res.json(polls);
+        });
     });
     
     
