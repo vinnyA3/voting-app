@@ -1,3 +1,7 @@
+//require user model 
+var User = require('../models/user'),
+    Poll = require('../models/poll');
+
 module.exports = function(app,passport){
     
     //process the signup form and run passport authentication
@@ -45,8 +49,35 @@ module.exports = function(app,passport){
     //================================================
     
     app.get('/dashboard', isLoggedIn, function(req,res){
-        return res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
+        //query db for user 
+        User.findById(req.user.local.id, function(err,user){
+           if(err){ return err;}
+            
+           //just console the result for now....
+            console.log(req.user);
+            return res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
+        });
+        
     });
+    
+    app.post('/dashboard', isLoggedIn, function(req,res){
+        var poll = {name: req.body.name, options: req.body.option, creator: req.user.local.id};
+        //create new poll object
+        var newPoll = new Poll();
+        newPoll.polls = poll;
+        
+        //find the user with the request id and populate polls reference in User (UserSchema)
+        User.findById(req.user.local.id)
+             .populate('polls')
+             .exec(function(err,user){
+                 if(err){return err;}
+                console.log(user);
+                  console.log(req.user);
+                 res.send({success:true, message: "Post Successful!"});
+        });        
+    });
+    
+    
     
     
     //================================================
