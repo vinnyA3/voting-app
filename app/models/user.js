@@ -15,8 +15,7 @@ var userSchema = mongoose.Schema({
         id: String,
         token: String,
         name: String
-    },
-    polls:[{type: mongoose.Schema.Types.ObjectId, ref:'Poll'}]
+    }
 });
 
 //methods
