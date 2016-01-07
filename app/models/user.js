@@ -1,6 +1,8 @@
 //Things that we need
 var mongoose = require('mongoose'),
-    bcrpyt = require('bcrypt-nodejs'); 
+    bcrpyt = require('bcrypt-nodejs'),
+    //require exports votes schema 
+    Poll = require('./poll');
 
 //define the schema for our user model
 var userSchema = mongoose.Schema({
@@ -13,7 +15,8 @@ var userSchema = mongoose.Schema({
         id: String,
         token: String,
         name: String
-    }
+    },
+    polls:[{type: mongoose.Schema.Types.ObjectId, ref:'Poll'}]
 });
 
 //methods
