@@ -73,7 +73,7 @@ module.exports = function(app,passport){
         res.send({success:true, message:'Poll created!', poll:newPoll});
     });
     
-    //route to dislpay all users polls
+    //route to dislpay all user's polls
     app.get('/polls', isLoggedIn, function(req,res){
        //go through database and find the polls the match the req.email
         Poll.find({'creator': req.user.local.email}, function(err,polls){
@@ -83,9 +83,26 @@ module.exports = function(app,passport){
         });
     });
     
+    //dislpay a specifc poll
+    app.get('/polls/:poll_id', isLoggedIn, function(req,res){
+        if(req.params.poll_id){
+            Poll.findOne({'_id': req.params.poll_id}, function(err,poll){
+               if(err){ return res.send(err);}
+                
+                return res.json(poll);
+            });
+        }
+    });
     
+    //route for deleteing a specific poll
+    app.delete('/polls/:poll_id', function(req,res){
+        Poll.remove({'_id' : req.params.poll_id}, function(err,user){
+            if(err){ return res.send(err);}
+            return res.json({success: true, message: 'Deleted Successfully!'}); 
+        });
+    });
     
-    
+      
     //================================================
     // LOGOUT
     //================================================
