@@ -15,6 +15,7 @@ angular.module('authService', [])
         //is logged in function
         function isLoggedIn(){
           if(user){  
+              console.log(user);
               return true;
           }else{
               return false;
@@ -24,15 +25,41 @@ angular.module('authService', [])
         //user status function - returns true if we have a user, false otherwise
         function getUserStatus(){
             return user;
-        }
+        };
+    
     
         //signup function
         function signup(name,email,password){
-            return $http.post('/signup', {
+            
+            //create a new instance of deffered
+            var deffered = $q.defer();
+            
+             $http.post('/signup', {
                 name: name,
                 email: email,
                 password: password
-            });
+            })
+            //handle the success
+            .success(function(data, status){
+                 if(status == 200 && data.success){
+                     user = true;
+                     deffered.resolve();
+                 }
+                 else{
+                     user = false;
+                     deffered.reject();
+                 }
+             })
+             // handle the error
+             .error(function(data){
+                 user = false;
+                 deffered.reject();
+             });
+            
+            //return the promise object
+            
+            return deffered.promise;
+        
         };
         
         //login function
