@@ -9,5 +9,11 @@
     margin:0 auto;
 }
 .form-container .btn{
-    margin-top: 15px;
+    margin-top: 20px;
+}
+.logout-btn{
+    margin-top:9px;
+}
+.form-header{
+    margin-bottom: 20px;
 }
