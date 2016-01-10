@@ -8,7 +8,7 @@ angular.module('appRoutes', ['ngRoute'])
             })
             .when('/signup', {
                 templateUrl: 'app/views/pages/signup.html',
-                controller: 'mainController',
+                controller: 'signupController',
                 controllerAs: 'signup'
             })
             .when('/login', {
