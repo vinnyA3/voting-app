@@ -18,7 +18,7 @@ module.exports = function(app,passport){
              req.login(user, function(err){
                 if(err){return next(err);}
                 //one success, redirect to the dashboard
-                return res.send({success: true});
+                return res.status(200).json({success: true});
              });
     
          })(req,res,next);
