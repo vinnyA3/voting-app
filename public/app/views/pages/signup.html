@@ -1,12 +1,13 @@
 <div class="form-container">
+    <div ng-if="vm.error" class="alert alert-danger">{{signup.errorMessage}}</div>
     <h1 class="form-header">Sign Up</h1>
-    <form ng-submit='signup.doSignUp()'>
+    <form ng-submit='signup.signup()'>
         <label for="name">Name: </label>
-        <input type="text" ng-model='signup.signUpData.name' name="name" class="form-control">
+        <input type="text" ng-model='signup.signupData.name' name="name" class="form-control">
         <label for="email">Email</label>
-        <input type="text" ng-model='signup.signUpData.email' name="email" class="form-control">
+        <input type="text" ng-model='signup.signupData.email' name="email" class="form-control">
         <label for="password">Password:</label>
-        <input type="password" ng-model='signup.signUpData.password' name="password" class="form-control">
+        <input type="password" ng-model='signup.signupData.password' name="password" class="form-control">
         <input type="submit" class="btn btn-primary" value="Sign Up">
     </form>
 </div>
