@@ -17,7 +17,8 @@ module.exports = function(app,passport){
              //explicitly run passport's login function
              req.login(user, function(err){
                 if(err){return next(err);}
-                return res.send({success:true,message:'Sign Up Successful!'});
+                //one success, redirect to the dashboard
+                return res.send({success: true});
              });
     
          })(req,res,next);
@@ -30,21 +31,26 @@ module.exports = function(app,passport){
                return next(err);
            }
            if(!user){
-               return res.send({success:false, message:'Login Unsuccessful!'});
+               return res.status(401).json({success:false, message:'Login Unsuccessful!'});
            }else{
                //explicitly call passport's login function
                req.login(user, function(err){
                    if(err){
                       return next(err);
                    } 
-                      //one success, redirect to the dashboard
-                      res.redirect('/dashboard');
+                      //on success, send Ok : 200 status
+                      return res.status(200).json({success: true});
                });
            }
            
         })(req,res,next);
     }); 
     
+    
+    //route to test if the user is logged in or not
+    app.get('/loggedin', function(req,res){
+        res.send(req.isAuthenticated() ? req.user : '0');
+    });
     //================================================
     //Protected api routes section
     //================================================
@@ -108,7 +114,7 @@ module.exports = function(app,passport){
     //================================================
     app.get('/logout', function(req,res){
        req.logout();//passports logout function
-       res.send({success:true, message:'Logged Out Successfully!'});
+       res.status(200).json({status: 'Bye!'});
     });
     
 };
@@ -122,5 +128,5 @@ function isLoggedIn(req,res,next){
         return next();
     }
     //if they are not authenticated in the session, redirect them to the home page
-     res.redirect('/');
+     res.sendStatus(401);
 }
