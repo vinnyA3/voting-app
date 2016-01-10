@@ -31,7 +31,7 @@
                     <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
                     <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
                     <li ng-if="main.loggedIn"><a href="/dashboard">Dashboard</a></li>
-                    <li ng-if="main.loggedIn" ><button class="btn btn-primary" ng-click="main.logout()">Log Out</button></li>
+                    <li ng-if="main.loggedIn" ><button class="btn btn-primary logout-btn" ng-click="main.logout()">Log Out</button></li>
                   </ul>
             </div><!--/.nav-collapse -->         
            </nav> 
@@ -57,6 +57,7 @@
     <!-- controllers -->
     <script src="app/controllers/mainCtrl.js" type="text/javascript"></script>
     <script src="app/controllers/loginCtrl.js"></script>
+    <script src="app/controllers/signupCtrl.js"></script>
     <!-- services -->
     <script src="app/services/authService.js"></script>
     <!--main angular files-->
