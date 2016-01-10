@@ -1,0 +1,13 @@
+.container-fluid{
+    padding: 0;
+}
+.navbar{
+    border-radius: 0;
+}
+.form-container{
+    width:400px;
+    margin:0 auto;
+}
+.form-container .btn{
+    margin-top: 15px;
+}
