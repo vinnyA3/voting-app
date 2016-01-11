@@ -4,6 +4,12 @@
 .navbar{
     border-radius: 0;
 }
+/* MAIN PAGE */
+.main-header{
+    width: 100%;
+}
+
+
 .form-container{
     width:400px;
     margin:0 auto;
@@ -32,4 +38,5 @@
 .poll .delete{
     position: absolute;
     right: 0;
+    top: -.3px;
 }

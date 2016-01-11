@@ -85,7 +85,7 @@ module.exports = function(app,passport){
         Poll.find({'creator': req.user.local.email}, function(err,polls){
             if(err){ return res.send(err);}
             //return the found polls
-            console.log(polls);
+             console.log(polls);
              res.send(polls);
         });
     });

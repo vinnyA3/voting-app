@@ -1,9 +1,17 @@
 angular.module('dashCtrl',['pollsService'])
-    .controller('dashController', function(Poll){
+    .controller('dashController', function(Poll, $compile,$scope){
         var vm = this;
         
         vm.error = false;
         vm.success = false;
+    
+        //initialize poll data object
+        vm.pollData = {}
+        vm.pollData.option = [];
+    
+    
+        //initialize counter variable - keeps track of each option element to be added to the option array
+        vm.inputCounter = 1;
     
         //create poll
     
@@ -12,7 +20,9 @@ angular.module('dashCtrl',['pollsService'])
                 //on success
                 .then(function(data){
                     vm.success = true;
-                    vm.successMessage = data.message;
+                    vm.successMessage = "Poll creation successful!";
+                    //clear the form
+                    vm.pollData = {};
                 })
                 //error
                 .catch(function(){
@@ -25,6 +35,11 @@ angular.module('dashCtrl',['pollsService'])
         //add to html function(option)
         vm.addOption = function(){
             var myEl = angular.element(document.querySelector('#pollFormId'));
-            myEl.append('<label for="option">Option: </label><input type="text" class="form-control" ng-model="dash.pollData.option" name="option">');
-        }
+            myEl.append('<label for="option">Option: </label><input type="text" class="form-control" ng-model="dash.pollData.option['+ vm.inputCounter +']" name="option">');
+            // Compile the HTML and assign to scope- ng-model does not recognize appension
+            var compile = $compile(myEl)($scope);
+            
+            vm.inputCounter++;
+        };
+    
     }); 

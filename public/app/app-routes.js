@@ -26,6 +26,11 @@ angular.module('appRoutes', ['ngRoute'])
                 controller: 'pollsController',
                 controllerAs : 'poll'
             })
+            .when('/poll/:poll_id', {
+                templateUrl: 'app/views/pages/poll.html',
+                controller: 'pollsController',
+                controllerAs: 'poll'
+            })
             .otherwise({
                 redirectTo: '/' 
             });

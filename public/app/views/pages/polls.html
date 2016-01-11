@@ -1,6 +1,6 @@
 <div ng-init="poll.getpolls()" class="poll-container text-center">
     <h1>Your Polls</h1>
     <div class="alert alert-danger" ng-show="poll.error">{{poll.errorMessage}}</div>
-    <div ng-repeat="poll in poll.polls" class="poll">{{poll.name}} <button class="btn btn-danger delete">Delete</button></div>
+    <div ng-repeat="userPoll in poll.polls" class="poll"><a href="/poll/{{userPoll._id}}">{{userPoll.name}}</a> <button ng-click="poll.deletePoll(userPoll._id)" class="btn btn-danger delete">Delete</button></div>
     
 </div>

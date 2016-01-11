@@ -1,5 +1,5 @@
 angular.module('pollsCtrl', ['pollsService'])
-    .controller('pollsController', function($location, Poll){
+    .controller('pollsController', function($location,$routeParams, Poll){
         
         var vm = this;
     
@@ -22,10 +22,41 @@ angular.module('pollsCtrl', ['pollsService'])
                     
                 });
         }; //end get polls
+    
+        //delete poll
+        vm.deletePoll = function(id){
+            
+          Poll.deletePoll(id)
+            //on success
+            .then(function(data){
+            
+              //after delete, get the new update polls list
+              Poll.getPolls()
+                //on success
+                .then(function(data){
+                    //set the poll object with the data
+                    console.log(data);
+                    vm.polls = data;
+                })
+                
+            });    
+          
+        };
         
     
-        //get single poll based on url parameters
+        vm.getPollInfo = function(){
+            console.log('the id being passed is: ' + $routeParams.poll_id);
+            Poll.getPoll($routeParams.poll_id)
+                //on success
+                .then(function(data){
+                    vm.singlePoll = data;
+                    console.log(data);    
+                })
+                //error
+                .catch(function(){
+                    console.log("error getting data...");
+                });
+        };
         
-        //post a poll from the dashboard .. move to top
     
     });

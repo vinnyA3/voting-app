@@ -3,8 +3,9 @@ angular.module('pollsService', [])
         
         return({
           getPolls: getPolls,
-          addPoll: addPoll
-          //getPoll: getPoll
+          addPoll: addPoll,
+          getPoll: getPoll,
+          deletePoll: deletePoll
         });
     
         function getPolls(){
@@ -48,7 +49,7 @@ angular.module('pollsService', [])
                 //on success
                 .success(function(status,data){
                     //return the promise && return data
-                    if(status == 200 && data){
+                    if(data){
                         deffered.resolve(data);
                     }else{
                         //reject 
@@ -63,6 +64,48 @@ angular.module('pollsService', [])
             
             //return the promse
             return deffered.promise;
+        };
+    
+        //get a poll
+        function getPoll(id){
+            //create instance of defer
+            var deffered = $q.defer();
+            
+            //make reques
+            $http.get('/polls/'+id)
+                //on success
+                .success(function(data){
+                    //resolve
+                    deffered.resolve(data);
+                })
+                //on error
+                .error(function(data){
+                    //reject
+                    deffered.reject();
+                });
+            
+            //return the promise
+            return deffered.promise;
+        };
+        
+        //delete a poll
+        function deletePoll(id){
+            //create instance of defer
+            var deffered = $q.defer();
+            
+            $http.delete('/polls/' + id)
+                //success  
+                .success(function(data){
+                    deffered.resolve();
+                })
+                //error
+                .error(function(){
+                    deffered.reject();
+                });
+            
+            //return the promise object
+            return deffered.promise;
+                
         };
     
     
