@@ -1,1 +1,15 @@
-<h1>Ayyy lmao this is the dashboard!!</h1>
+<div class="form-container">
+    <h1 class="form-header text-center">Add a new poll</h1>
+    <div class="alert alert-danger" ng-show="dash.error">{{dash.errorMessage}}</div>
+    <div class="alert alert-success" ng-show="dash.success">{{dash.successMessage}}</div>
+    <form ng-submit='dash.createPoll()'>
+        <div id="pollFormId">
+            <label for="postname">Post Title:</label>
+            <input type="text" ng-model = 'dash.pollData.name' name="postname" class="form-control">
+            <label for="option">Option:</label>
+            <input type="text" ng-model='dash.pollData.option' name="option" class="form-control">
+        </div>
+            <input type="submit"  class="btn btn-success" value="Submit Poll">
+    </form>
+    <button ng-click="dash.addOption()" class="btn btn-primary">Add an option</button>
+</div>

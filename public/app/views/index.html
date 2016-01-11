@@ -31,6 +31,7 @@
                     <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
                     <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
                     <li ng-if="main.loggedIn"><a href="/dashboard">Dashboard</a></li>
+                    <li ng-if="main.loggedIn"><a href="/polls">Your Polls</a></li>
                     <li ng-if="main.loggedIn" ><button class="btn btn-primary logout-btn" ng-click="main.logout()">Log Out</button></li>
                   </ul>
             </div><!--/.nav-collapse -->         
@@ -58,8 +59,11 @@
     <script src="app/controllers/mainCtrl.js" type="text/javascript"></script>
     <script src="app/controllers/loginCtrl.js"></script>
     <script src="app/controllers/signupCtrl.js"></script>
+    <script src="app/controllers/pollsCtrl.js"></script>
+    <script src="app/controllers/dashCtrl.js"></script>
     <!-- services -->
     <script src="app/services/authService.js"></script>
+    <script src="app/services/pollsService.js"></script>
     <!--main angular files-->
     <script src="app/app-routes.js" type="text/javascript"></script>
     <script src="app/app.js" type="text/javascript"></script>

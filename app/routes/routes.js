@@ -76,7 +76,7 @@ module.exports = function(app,passport){
             //thats it
         });  
         
-        res.send({success:true, message:'Poll created!', poll:newPoll});
+        res.status(200).send({message: 'Poll creation successful!'});
     });
     
     //route to dislpay all user's polls
@@ -85,7 +85,8 @@ module.exports = function(app,passport){
         Poll.find({'creator': req.user.local.email}, function(err,polls){
             if(err){ return res.send(err);}
             //return the found polls
-            return res.json(polls);
+            console.log(polls);
+             res.send(polls);
         });
     });
     

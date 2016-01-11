@@ -18,8 +18,16 @@ angular.module('appRoutes', ['ngRoute'])
             })
             .when('/dashboard', {
                 templateUrl: 'app/views/pages/dashboard.html',
-                controller:'mainController',
-                controllerAs: 'main',
+                controller:'dashController',
+                controllerAs: 'dash',
+            })
+            .when('/polls', {
+                templateUrl: 'app/views/pages/polls.html',
+                controller: 'pollsController',
+                controllerAs : 'poll'
+            })
+            .otherwise({
+                redirectTo: '/' 
             });
     
         $locationProvider.html5Mode(true);
