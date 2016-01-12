@@ -65,10 +65,16 @@ module.exports = function(app,passport){
         
         //create new poll object
         var newPoll = new Poll();
+        //option object
+        var option = req.body.option;
         
         newPoll.creator = req.user.local.email;
         newPoll.name = req.body.name;
-        newPoll.options = req.body.option;
+        
+        //for every option in option, push an object containing the option name
+        option.forEach(function(op){
+            newPoll.options.push({option: op, votes: 0});    
+        });
         
         //save new poll
         newPoll.save(function(err){
