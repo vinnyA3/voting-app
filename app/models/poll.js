@@ -6,7 +6,9 @@ var mongoose = require('mongoose'),
 var pollSchema = mongoose.Schema({
        creator: String,
        name:String,
-       options:[String]
+       options:[
+         {option: String, votes: Number}
+       ]
 });
 
 //send votesSchema to be used across the app
