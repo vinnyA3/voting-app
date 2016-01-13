@@ -107,6 +107,27 @@ module.exports = function(app,passport){
         }
     });
     
+    //put request to the specific poll page ... put request
+    app.put('/polls/:poll_id', isLoggedIn, function(req,res){
+        //First we find the poll id with req.params
+        Poll.where({'_id': req.params.poll_id})
+            //in that returned query object, find the object in the options array whose option the matches the request
+            //then, increment that objects's vote value
+            .update({'options.option' : req.body.option}, {$inc: {'options.$.votes': 1} } , function(err,poll){
+                if(err){ return res.send(err);}
+                
+                //upon success, we'll make a query returning the updated poll
+                Poll.findOne({'_id': req.params.poll_id}, function(err,poll){
+                   if(err){ return res.send(err);}
+                    //return the poll
+                    return res.send(poll);
+                });
+                
+            }); //end update
+            
+        });
+        
+    
     //route for deleteing a specific poll
     app.delete('/polls/:poll_id', function(req,res){
         Poll.remove({'_id' : req.params.poll_id}, function(err,user){
