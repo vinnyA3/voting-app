@@ -9,7 +9,8 @@ angular.module('authService', [])
             getUserStatus: getUserStatus,
             login: login,
             signup: signup,
-            logout: logout
+            logout: logout,
+            getUser:getUser
         });
     
         //is logged in function
@@ -114,6 +115,18 @@ angular.module('authService', [])
             //return the promise object
             return deffered.promise;
         };
+    
+        function getUser(){
+            var deffered = $q.defer();
+             $http.get('/dashboard', {cache: true})
+                .success(function(data){
+                    deffered.resolve(data);    
+             })
+            .error(function(){
+                deffered.reject();
+             });
+            return deffered.promise;
+        }
     
         
     }); //end auth service
