@@ -43,18 +43,70 @@ angular.module('pollsCtrl', ['pollsService'])
           
         };
         
+        //function for implementing the chart
+        vm.chartData = function(poll){
+            //initialize our label array and our data array(which will contain the votes for the options)
+            var label = [], data = [];
+            
+            //Now grab the labels and data to be used in the chart; in this case(obj.option value && obj.votes value)
+            poll.options.forEach(function(obj){
+               label.push(obj.option); 
+               data.push(obj.votes);
+            });
+            
+            //create our data object to be sent to my New Chart
+            var data = {
+              labels: label,
+              datasets: [
+                  {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: data
+                  }
+              ]
+            };
+             
+            //initialize chart variables
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myBarChart = new Chart(ctx).Bar(data);   
+        };
+    
+    
     
         vm.getPollInfo = function(){
-            console.log('the id being passed is: ' + $routeParams.poll_id);
+            
             Poll.getPoll($routeParams.poll_id)
                 //on success
                 .then(function(data){
+                    console.log(data);
                     vm.singlePoll = data;
-                    console.log(data);    
+                    //pass the data, poll, into our chartData function
+                    vm.chartData(data);
                 })
                 //error
                 .catch(function(){
                     console.log("error getting data...");
+                });
+        };
+    
+        //vote function
+        vm.vote = function(){
+            Poll.incrementVote($routeParams.poll_id, vm.voteOption)
+                //on success
+                .then(function(data){
+                    //get the newly updated poll, and change the ouputted poll's data
+                    vm.singlePoll = data;
+                    //pass the data, poll, into our chartData function
+                    vm.chartData(data);
+                })
+                //error
+                .catch(function(){
+                    console.log('error updating data!');
                 });
         };
         
