@@ -56,7 +56,13 @@ module.exports = function(app,passport){
     //================================================
     
     app.get('/dashboard', isLoggedIn, function(req,res){
-         res.send({success: true, message:'Hello, ' + req.user.local.name + '!'});
+        //get the user
+        //User.find({'_id': req.user.local.id})
+        User.findOne({'_id': req.user._id}, function(err,user){
+           if(err){return res.send(err);}
+            //return the user
+            return res.send(user);
+        });
     });
     
     //add a new poll
