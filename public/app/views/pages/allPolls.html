@@ -1,8 +1,9 @@
 <div class="content-container">
     <div class="col-md-10">
+        <h1 class="sm-bottom-margin"><span class="title-icons fa fa-globe"></span> World Polls</h1>
         <div ng-init="polls.getAllPolls()" class="poll-table">
             <div ng-show="polls.error" class="alert alert-danger">{{polls.errorMessage}}</div>
-            <form class="form-inline">
+            <form class="form-inline sm-bottom-margin">
                 <div class="form-group">
                     <label>Search: </label>
                     <input type="text" ng-model="search" class="form-control" placeholder="Search">
