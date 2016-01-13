@@ -1,16 +1,18 @@
-<div ng-init="poll.getPollInfo()" class="poll-container pull-left">
-    <h1>{{poll.singlePoll.name}}</h1>
-    <p>Created by: {{poll.singlePoll.creator}}</p>
-    <!-- Bar Chart -->
-    <canvas id="myChart" width="400" height="400"></canvas>
-</div>
+<div class="content-container">
+    <div ng-init="poll.getPollInfo()" class="poll-container pull-left">
+        <h1>{{poll.singlePoll.name}}</h1>
+        <p>Created by: {{poll.singlePoll.creator}}</p>
+        <!-- Bar Chart -->
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
 
-<div class = "poll-container pull-right sm-top-margin">
-    <form ng-submit="poll.vote()">
-        <h2>Cast Your Vote!</h2>
-        <div ng-repeat="op in poll.singlePoll.options">
-            <input type="radio" name="vote" ng-model="poll.voteOption" value="{{op.option}}"><label class="poll-votes-options">&nbsp;&nbsp;{{op.option}}</label>
-        </div>
-        <input type="submit" ng-disabled="!poll.voteOption || poll.voteDisable" class="btn btn-success poll-votes-button" value="Submit Vote">
-    </form>
+    <div class = "poll-container pull-right sm-top-margin">
+        <form ng-submit="poll.vote()">
+            <h2>Cast Your Vote!</h2>
+            <div ng-repeat="op in poll.singlePoll.options">
+                <input type="radio" name="vote" ng-model="poll.voteOption" value="{{op.option}}"><label class="poll-votes-options">&nbsp;&nbsp;{{op.option}}</label>
+            </div>
+            <input type="submit" ng-disabled="!poll.voteOption || poll.voteDisable" class="btn btn-success poll-votes-button" value="Submit Vote">
+        </form>
+    </div>
 </div>

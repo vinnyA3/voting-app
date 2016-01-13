@@ -7,8 +7,8 @@
         <title>Voting App</title>
         <!--bootstrap-->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <!-- font awesome
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+        <!-- font awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- animate css-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/styles.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
     <body ng-app='mainApp' ng-controller="mainController as main">
         
         <div class="container-fluid">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -42,13 +42,17 @@
             
             
             
-          <div class="container">
+          
                 <!-- angular view -->
                 <div ng-view></div> 
-          </div>
             
             
         </div> <!-- fluid container -->
+    
+    <div class="footer text-center">
+        <h3>Everybody Votes | <a href="">@vinnyA3</a></h3>
+    </div>
+       
     
     <!-- COMPILE JS ? -->
     <!--jquery-->
