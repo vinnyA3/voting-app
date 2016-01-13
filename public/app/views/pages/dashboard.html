@@ -1,5 +1,10 @@
-<div class="form-container">
-    <h1 class="form-header text-center">Add a new poll</h1>
+<div class="dash-header pull-left">
+    <h1>My Dashboard</h1>
+    
+</div>
+
+<div class="form-container pull-right sm-margin-top">
+    <h1 class="form-header text-center">Create a new poll</h1>
     <div class="alert alert-danger" ng-show="dash.error">{{dash.errorMessage}}</div>
     <div class="alert alert-success" ng-show="dash.success">{{dash.successMessage}}</div>
     <form ng-submit='dash.createPoll()'>
@@ -9,7 +14,7 @@
             <label for="option">Option:</label>
             <input type="text" ng-model='dash.pollData.option[0]' name="option" class="form-control">
         </div>
-            <input type="submit"  class="btn btn-success" value="Submit Poll">
+            <input type="submit" ng-disabled='!(dash.pollData.name || dash.pollData.option)' class="btn btn-success" value="Submit Poll">
     </form>
     <button ng-click="dash.addOption()" class="btn btn-primary">Add an option</button>
 </div>

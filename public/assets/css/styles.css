@@ -1,6 +1,9 @@
 .container-fluid{
     padding: 0;
 }
+.sm-top-margin{
+    margin-top: 15px !important;
+}
 .navbar{
     border-radius: 0;
 }
@@ -44,3 +47,4 @@
     right: 0;
     top: -.3px;
 }
+

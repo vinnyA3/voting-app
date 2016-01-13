@@ -1,0 +1,27 @@
+<div ng-init="polls.getAllPolls()" class="poll-table">
+    <div ng-show="polls.error" class="alert alert-danger">{{polls.errorMessage}}</div>
+    <form class="form-inline">
+        <div class="form-group">
+            <label>Search: </label>
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <table class="table table-stripped table-hover">
+        <thead>
+            <th>Author</th>
+            <th>Poll Title</th>
+        </thead>
+        <tbody>
+            <tr dir-paginate="poll in polls.allPolls|itemsPerPage:5|filter:search">
+                <td>{{poll.creator}}</td>
+                <td><a href="/poll/{{poll._id}}">{{poll.name}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true">
+    </dir-pagination-controls>
+    
+</div>

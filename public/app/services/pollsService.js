@@ -6,7 +6,8 @@ angular.module('pollsService', [])
           addPoll: addPoll,
           getPoll: getPoll,
           deletePoll: deletePoll,
-          incrementVote: incVote
+          incrementVote: incVote,
+          getAllPolls: getAllPolls
         });
     
         function getPolls(){
@@ -131,6 +132,30 @@ angular.module('pollsService', [])
             });
             
             //return the promise obj
+            return deffered.promise;
+        };
+    
+        //route to get all the poll, regardless of the user
+        function getAllPolls(){
+            //create a new defer instance
+            var deffered = $q.defer();
+            
+            //make the get request
+            $http.get('/all-polls')
+                //on success
+                .success(function(data){
+                    if(data){
+                        deffered.resolve(data);
+                    }else{
+                        deffered.reject();
+                    }          
+                })
+                //if error
+                .error(function(){
+                    deffered.reject();
+                });
+            
+            //return the promise object
             return deffered.promise;
         };
     

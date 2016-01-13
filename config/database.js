@@ -1,3 +1,3 @@
 module.exports = {
-    'db' : 'mongodb://localhost:27017/voting_db'
+    'db' : 'mongodb://ace:jlawrox@ds045622.mongolab.com:45622/voting_db'
 };

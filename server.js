@@ -7,11 +7,12 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
+    MongoStore = require('express-session-mongo'),
     configDB = require('./config/database'),
     port = process.env.PORT || 8080;
 
 //CONFIGURATION ======================================================
-mongoose.connect(configDB.db);
+mongoose.connect(process.env.MONGOLAB_URI || configDB.db);
 
 require('./config/passport')(passport); //pass passport for configuration
 
@@ -39,6 +40,7 @@ app.use(express.static(__dirname + '/public'));
 //required for passport
 app.use(session({
     secret:'theregoesamanwhooncehaditall',
+    store: new MongoStore(),
     resave: true,
     saveUninitialized: true
 }));//secret key

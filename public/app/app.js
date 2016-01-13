@@ -6,7 +6,9 @@ angular.module('mainApp', [
     'loginCtrl',
     'pollsCtrl',
     'dashCtrl',
+    'allPollsCtrl',
     'appRoutes',
     'authService',
-    'pollsService'
+    'pollsService',
+    'angularUtils.directives.dirPagination'
 ]);

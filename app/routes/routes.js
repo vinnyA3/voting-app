@@ -129,11 +129,21 @@ module.exports = function(app,passport){
         
     
     //route for deleteing a specific poll
-    app.delete('/polls/:poll_id', function(req,res){
+    app.delete('/polls/:poll_id', isLoggedIn, function(req,res){
         Poll.remove({'_id' : req.params.poll_id}, function(err,user){
             if(err){ return res.send(err);}
             return res.json({success: true, message: 'Deleted Successfully!'}); 
         });
+    });
+    
+    
+    //route for returning all the polls
+    app.get('/all-polls', isLoggedIn, function(req,res){
+       Poll.find(function(err,polls){
+          if(err){ return res.send(err);}
+           //return all the polls
+           res.send(polls);
+       }); 
     });
     
       

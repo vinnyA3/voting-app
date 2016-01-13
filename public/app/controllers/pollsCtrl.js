@@ -60,7 +60,7 @@ angular.module('pollsCtrl', ['pollsService'])
               datasets: [
                   {
                         label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
+                        fillColor: "rgba(64,186,57,0.2)",
                         strokeColor: "rgba(220,220,220,1)",
                         pointColor: "rgba(220,220,220,1)",
                         pointStrokeColor: "#fff",
@@ -103,6 +103,8 @@ angular.module('pollsCtrl', ['pollsService'])
                     vm.singlePoll = data;
                     //pass the data, poll, into our chartData function
                     vm.chartData(data);
+                    //disable var for single poll view
+                    vm.voteDisable = true;
                 })
                 //error
                 .catch(function(){
