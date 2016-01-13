@@ -7,15 +7,17 @@ angular.module('signupCtrl', ['authService'])
     
         //signup function
         vm.signup = function(){
-            vm.signUpDisable = true;
+            vm.processing = true;
             Auth.signup(vm.signupData.name, vm.signupData.email, vm.signupData.password)
                 // on success
                 .then(function(data){
                     $location.path('/dashboard');
+                    vm.processing = false;
                     vm.signupData = {};
                 })
                 //handle the error
                 .catch(function(){
+                    vm.processing = false;
                     vm.errorMessage = "Failed to signup. Please try again.";
                     vm.error = true;
                 });

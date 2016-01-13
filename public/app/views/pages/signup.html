@@ -8,6 +8,7 @@
         <input type="text" ng-model='signup.signupData.email' name="email" class="form-control">
         <label for="password">Password:</label>
         <input type="password" ng-model='signup.signupData.password' name="password" class="form-control">
-        <input type="submit" ng-disabled="vm.signUpDisable" class="btn btn-primary" value="Sign Up">
+        <input type="submit" ng-if="!signup.processing" class="btn btn-primary" value="Sign Up">
+        <span ng-if="signup.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
     </form>
 </div>

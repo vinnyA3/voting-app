@@ -7,18 +7,18 @@ angular.module('loginCtrl', ['authService'])
         var vm = this;
         //initial values for error message and disabled button
         vm.error = false;
-        vm.disabled = false;
+        //vm.disabled = false;
     
          vm.doLogin = function(){
-          vm.disabled = true;
+          vm.processing = true;
           //call out login from the service
           Auth.login(vm.loginData.email, vm.loginData.password)
             //handle the success
             .then(function(data){
              //redirect to our dashboard
              $location.path('/dashboard');
-              //disabled = false;
-              vm.disabled = false;
+              vm.processing = false;
+              //vm.disabled = false;
               //empty our form
               vm.loginData = {};
           })
@@ -26,7 +26,7 @@ angular.module('loginCtrl', ['authService'])
           .catch(function(){
              vm.error = true;
              vm.errorMessage = "Invalid email and/or password!"
-             vm.disabled = false;
+             vm.processing = false;
           });
              
       };//end do login 

@@ -12,10 +12,11 @@
             <th>Poll Title</th>
         </thead>
         <tbody>
-            <tr dir-paginate="poll in polls.allPolls|itemsPerPage:5|filter:search">
+            <tr ng-if="!poll.processing" dir-paginate="poll in polls.allPolls|itemsPerPage:5|filter:search">
                 <td>{{poll.creator}}</td>
                 <td><a href="/poll/{{poll._id}}">{{poll.name}}</a></td>
             </tr>
+            <span ng-if="poll.processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
         </tbody>
     </table>
     <dir-pagination-controls

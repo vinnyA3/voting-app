@@ -5,17 +5,20 @@ angular.module('pollsCtrl', ['pollsService'])
     
         //set the error variable
         vm.error = false;
+        vm.processing = true;
     
         vm.getpolls = function(){
             Poll.getPolls()
                 //on success
                 .then(function(data){
                     //set the poll object with the data
+                    vm.processing = false;
                     console.log(data);
                     vm.polls = data;
                 })
                 // on error
                 .catch(function(data){
+                    vm.processing = false;
                     //set the error
                     vm.error = true;
                     vm.errorMessage = "Failed to retrieve polls. Please try again later.";
