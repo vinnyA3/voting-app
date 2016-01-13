@@ -7,7 +7,7 @@ angular.module('signupCtrl', ['authService'])
     
         //signup function
         vm.signup = function(){
-            
+            vm.signUpDisable = true;
             Auth.signup(vm.signupData.name, vm.signupData.email, vm.signupData.password)
                 // on success
                 .then(function(data){
