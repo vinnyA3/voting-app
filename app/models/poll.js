@@ -11,5 +11,6 @@ var pollSchema = mongoose.Schema({
        ]
 });
 
+
 //send votesSchema to be used across the app
 module.exports = mongoose.model('Poll', pollSchema);
