@@ -1,6 +1,7 @@
-<div class="dash-header pull-left">
+<div ng-init="dash.getMe()" class="dash-header pull-left">
     <h1>My Dashboard</h1>
-    
+    <h4>Username: {{dash.userInfo.local.name}}</h4>
+    <h4>Email: {{dash.userInfo.local.email}}</h4>
 </div>
 
 <div class="form-container pull-right sm-margin-top">
