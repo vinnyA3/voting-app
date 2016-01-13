@@ -7,7 +7,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    MongoStore = require('express-session-mongo'),
+    //MongoStore = require('express-session-mongo'),
     configDB = require('./config/database'),
     port = process.env.PORT || 8080;
 
@@ -40,7 +40,7 @@ app.use(express.static(__dirname + '/public'));
 //required for passport
 app.use(session({
     secret:'theregoesamanwhooncehaditall',
-    store: new MongoStore(),
+    //store: new MongoStore(),
     resave: true,
     saveUninitialized: true
 }));//secret key
