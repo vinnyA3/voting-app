@@ -1,5 +1,5 @@
 angular.module('dashCtrl',['pollsService'])
-    .controller('dashController', function(Poll, $compile,$scope){
+    .controller('dashController', function(Poll,Auth,$compile,$scope){
         var vm = this;
         
         vm.error = false;
@@ -13,8 +13,19 @@ angular.module('dashCtrl',['pollsService'])
         //initialize counter variable - keeps track of each option element to be added to the option array
         vm.inputCounter = 1;
     
-        //create poll
+        vm.getMe = function(){
+          Auth.getUser()
+            .then(function(data){
+                console.log(data);
+                vm.userInfo = data;  
+            })
+            .catch(function(){
+                vm.userError = true;
+                vm.userErrorMessage = "Failed to retrieve user info.";
+            });
+        };
     
+        //create poll
         vm.createPoll = function(){
             Poll.addPoll(vm.pollData.name, vm.pollData.option)
                 //on success
