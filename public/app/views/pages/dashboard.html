@@ -1,21 +1,23 @@
-<div ng-init="dash.getMe()" class="dash-header pull-left">
+<div ng-init="dash.getMe()" class="col-md-5">
     <h1>My Dashboard</h1>
     <h4>Username: {{dash.userInfo.local.name}}</h4>
     <h4>Email: {{dash.userInfo.local.email}}</h4>
 </div>
 
-<div class="form-container pull-right sm-margin-top">
-    <h1 class="form-header text-center">Create a new poll</h1>
-    <div class="alert alert-danger" ng-show="dash.error">{{dash.errorMessage}}</div>
-    <div class="alert alert-success" ng-show="dash.success">{{dash.successMessage}}</div>
-    <form ng-submit='dash.createPoll()'>
-        <div id="pollFormId">
-            <label for="postname">Post Title:</label>
-            <input type="text" ng-model = 'dash.pollData.name' name="postname" class="form-control">
-            <label for="option">Option:</label>
-            <input type="text" ng-model='dash.pollData.option[0]' name="option" class="form-control">
-        </div>
-            <input type="submit" ng-disabled='!(dash.pollData.name || dash.pollData.option)' class="btn btn-success" value="Submit Poll">
-    </form>
-    <button ng-click="dash.addOption()" class="btn btn-primary">Add an option</button>
+<div class="col-md-4 col-md-offset-3">
+    <div class="form-container pull-right sm-margin-top">
+        <h1 class="form-header text-center">Create a new poll</h1>
+        <div class="alert alert-danger" ng-show="dash.error">{{dash.errorMessage}}</div>
+        <div class="alert alert-success" ng-show="dash.success">{{dash.successMessage}}</div>
+        <form ng-submit='dash.createPoll()'>
+            <div id="pollFormId">
+                <label for="postname">Post Title:</label>
+                <input type="text" ng-model = 'dash.pollData.name' name="postname" class="form-control">
+                <label for="option">Option:</label>
+                <input type="text" ng-model='dash.pollData.option[0]' name="option" class="form-control">
+            </div>
+                <input type="submit" ng-disabled='!(dash.pollData.name || dash.pollData.option)' class="btn btn-success" value="Submit Poll">
+        </form>
+        <button ng-click="dash.addOption()" class="btn btn-primary">Add an option</button>
+    </div>
 </div>
