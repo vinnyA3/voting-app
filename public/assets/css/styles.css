@@ -9,6 +9,9 @@
 .sm-top-margin{
     margin-top: 15px !important;
 }
+.sm-bottom-margin{
+    margin-bottom: 15px !important;
+}
 .navbar{
     border-radius: 0;
 }
@@ -37,7 +40,7 @@
 }
 .main-page-info{
    /* padding: 150px 0px 150px 0px; */
-     padding-top: 250px;
+     padding-top: 150px;
      padding-bottom: 250px;
 }
 .info{
@@ -69,6 +72,9 @@
     margin: 0;
     float:left;
 }
+.chart{
+    margin-bottom: 30px;
+}
 .poll{
     background: #e5e3e3;
     border-radius: 2px;
@@ -80,13 +86,12 @@
 .poll .delete{
     position: absolute;
     right: 0;
-    top: -.3px;
+    top: -.5px;
 }
 
 /* ANIMATIONS
 ====================== */
 .spinner {
-padding-top:-50px !important;
 font-size: 2em;
 animation:spin 1s infinite;
 -webkit-animation:spin 1s infinite;
@@ -110,8 +115,12 @@ to
 
 .spinner.md-offset-lg{
     position: absolute;
-    top: 120px;
+    top: 175px;
     left: 300px;
+}
+.spinner.md-offset-md{
+    position: absolute;
+    top: 35px;
 }
 
 /*footer*/
@@ -121,7 +130,5 @@ to
     padding-top:50px;
     padding-bottom: 50px;
     width: 100%;
-    position: absolute;
-    bottom: 0;
 }
 
