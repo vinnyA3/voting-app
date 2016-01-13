@@ -5,7 +5,8 @@ angular.module('pollsService', [])
           getPolls: getPolls,
           addPoll: addPoll,
           getPoll: getPoll,
-          deletePoll: deletePoll
+          deletePoll: deletePoll,
+          incrementVote: incVote
         });
     
         function getPolls(){
@@ -106,6 +107,31 @@ angular.module('pollsService', [])
             //return the promise object
             return deffered.promise;
                 
+        };
+    
+        //put request to increment a polls's vote value
+        //function takes an option which allows for vote incrementation
+        function incVote(id, option){
+            //create a new instance of defer
+            var deffered = $q.defer();
+            
+            //make put request
+            $http.put('/polls/' + id, {
+                option: option
+            })
+            //on success
+            .success(function(data){
+                //resolve
+                deffered.resolve(data);
+            })
+            //error
+            .error(function(data){
+                //reject the promise
+                deffered.reject();
+            });
+            
+            //return the promise obj
+            return deffered.promise;
         };
     
     
